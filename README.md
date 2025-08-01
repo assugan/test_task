@@ -79,13 +79,9 @@ test-task/
 # Проверка работы
 Проверка успешных и неуспешных подключений:
     1. Чтобы проверить запросы к серверу, можно временно изменить URL на рабочий, например:
-```
-    API_URL="https://api.github.com"
-```
+```API_URL="https://api.github.com"```
     2. И в `test_monitor.sh` временно включить отладочное логирование: 
-```
-    echo "$(date '+%Y-%m-%d %H:%M:%S') Successfully pinged $API_URL" >> "$LOG_FILE"
-```
+```echo "$(date '+%Y-%m-%d %H:%M:%S') Successfully pinged $API_URL" >> "$LOG_FILE"```
     3. Затем вручную запустить:
 ```
     sudo systemctl start test_monitor.service
