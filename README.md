@@ -77,35 +77,39 @@ test-task/
     systemctl list-timers | grep test_monitor
 ```
 # Проверка работы
-Проверка успешных и неуспешных подключений:
-    1. Чтобы проверить запросы к серверу, можно временно изменить URL на рабочий, например:
-```API_URL="https://api.github.com"```
-    2. И в `test_monitor.sh` временно включить отладочное логирование: 
-```echo "$(date '+%Y-%m-%d %H:%M:%S') Successfully pinged $API_URL" >> "$LOG_FILE"```
-    3. Затем вручную запустить:
-```
+#### Проверка успешных и неуспешных подключений:
+1. Чтобы проверить запросы к серверу, можно временно изменить URL на рабочий, например:
+
+    API_URL="https://api.github.com"
+
+2. И в `test_monitor.sh` временно включить отладочное логирование:
+
+    echo "$(date '+%Y-%m-%d %H:%M:%S') Successfully pinged $API_URL" >> "$LOG_FILE"
+
+3. Затем вручную запустить:
+
     sudo systemctl start test_monitor.service
     cat /var/log/monitoring.log
-```
-Проверка логирования перезапуска процесса:
-    1.	Создайте фейковый процесс `test`:
-```
+
+#### Проверка логирования перезапуска процесса:
+1.	Создайте фейковый процесс `test`:
+
     echo -e '#!/bin/bash\nsleep 9999' | sudo tee /usr/local/bin/test > /dev/null
     sudo chmod +x /usr/local/bin/test
     /usr/local/bin/test &
-```
-    2.	Перезапустите его:
-```
+
+2.	Перезапустите его:
+
     pkill test
     /usr/local/bin/test &
-```
-	4.	Проверьте лог:
-```
+
+4.	Проверьте лог:
+
     cat /var/log/monitoring.log
-```
+
 ## Пример логов
-```
+
     2025-07-31 13:17:44 Process test restarted: Old PID=4497, New PID=4660
     2025-07-31 13:18:00 Successfully pinged https://api.github.com
     2025-07-31 13:19:01 Monitoring server not reachable at https://test.com/monitoring/test/api
-```
+
