@@ -41,18 +41,18 @@ test-task/
     sudo cp test_monitor.service /etc/systemd/system/
     sudo cp test_monitor.timer /etc/systemd/system/
 ```
-  Обновите конфигурацию systemd:
-
-    `sudo systemctl daemon-reload`
-
+###  Обновите конфигурацию systemd:
+```
+    sudo systemctl daemon-reload
+```
 ## 4. Включение таймера
-
-    `sudo systemctl enable --now test_monitor.timer`
-
-  Проверьте работу:
-  
-    `systemctl list-timers | grep test_monitor`
-
+```
+    sudo systemctl enable --now test_monitor.timer
+```
+###  Проверьте работу:
+```  
+    systemctl list-timers | grep test_monitor
+```
 # Проверка работы
 ## Проверка успешных и неуспешных подключений
 
