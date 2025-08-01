@@ -77,8 +77,7 @@ test-task/
     systemctl list-timers | grep test_monitor
 ```
 # Проверка работы
-## Проверка успешных и неуспешных подключений
-
+Проверка успешных и неуспешных подключений:
     1. Чтобы проверить запросы к серверу, можно временно изменить URL на рабочий, например:
 ```
     API_URL="https://api.github.com"
@@ -92,8 +91,7 @@ test-task/
     sudo systemctl start test_monitor.service
     cat /var/log/monitoring.log
 ```
-## Проверка логирования перезапуска процесса
-
+Проверка логирования перезапуска процесса:
     1.	Создайте фейковый процесс `test`:
 ```
     echo -e '#!/bin/bash\nsleep 9999' | sudo tee /usr/local/bin/test > /dev/null
